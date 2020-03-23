@@ -35,7 +35,7 @@ export async function lint(project: string, options?: Partial<LintOptions>) {
     : undefined
   for (const sourceFile of program.getSourceFiles()) {
     let file = sourceFile.fileName
-    if (!file.includes('node_modules') && (!lintOptions.files || lintOptions.files.includes(file))) {
+    if (!file.includes('node_modules') && (!lintOptions.files || lintOptions.files.includes(file)) && (!lintOptions.ignoreJs || !file.includes('.js')) ) {
       if (!lintOptions.absolutePath) {
         file = path.relative(process.cwd(), file)
         if (file.startsWith('..')) {
@@ -151,4 +151,5 @@ const defaultLintOptions: LintOptions = {
   ignoreCatch: false,
   ignoreFiles: undefined,
   fileCounts: false,
+  ignoreJs: false,
 }

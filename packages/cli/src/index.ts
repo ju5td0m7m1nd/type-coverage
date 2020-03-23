@@ -32,7 +32,8 @@ async function executeCommandLine() {
       strict: argv.strict,
       enableCache: argv.cache,
       ignoreCatch: argv['ignore-catch'],
-      ignoreFiles: argv['ignore-files']
+      ignoreFiles: argv['ignore-files'],
+      ignoreJs: argv['ignore-js']
     }
   )
   const percent = Math.floor(10000 * correctCount / totalCount) / 100
@@ -59,6 +60,7 @@ interface ParsedArgs {
   strict: boolean
   cache: boolean
   detail: boolean
+  ['ignore-js']: boolean
   ['ignore-catch']: boolean
   ['ignore-files']?: string | string[]
   ['at-least']: number
